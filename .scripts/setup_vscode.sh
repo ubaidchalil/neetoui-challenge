@@ -21,7 +21,7 @@ if code_file_location.nil? && code_insiders_file_location.nil?
   return
 end
 
-config = `curl -s 'https://raw.githubusercontent.com/bigbinary/wheel/main/.vscode/extensions.json'`
+config = `curl -s 'https://raw.githubusercontent.com/bigbinary/neetoUI/main/.vscode/extensions.json'`
 extensions = JSON.parse(config)["recommendations"]
 
 extension_installation_command = code_file_location.nil? ? "code-insiders --install-extension" : "code --install-extension"

@@ -1,5 +1,5 @@
 {
-  "name": "Wheel",
+  "name": "NeetoUI",
   "version": "1.0.0",
   "engines": {
     "node": "16.5",
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "sync_with_wheel": "curl -s -L \"https://raw.githubusercontent.com/bigbinary/wheel/main/.scripts/sync_with_wheel.sh\" | bash",
+    "sync_with_neetoUI": "curl -s -L \"https://raw.githubusercontent.com/bigbinary/neetoUI/main/.scripts/sync_with_neetoUI.sh\" | bash",
     "lint": "eslint \"app/javascript/src/**/*.{js,jsx}\"",
     "lint:fix": "eslint --fix \"app/javascript/src/**/*.{js,jsx}\""
   },
