@@ -12,6 +12,7 @@ import {
 import { useAuthDispatch } from "contexts/auth";
 import { useUserState } from "contexts/user";
 
+import AppLogo from "./AppLogo";
 import { APP_NAME, SIDENAV_LINKS } from "./constants";
 
 const Sidebar = () => {
@@ -52,6 +53,7 @@ const Sidebar = () => {
       organizationInfo={{
         name: "NeetoUI",
         subdomain: "bigbinary.com",
+        logo: <AppLogo />,
       }}
       profileInfo={{
         name: `${user.first_name} ${user.last_name}`,
