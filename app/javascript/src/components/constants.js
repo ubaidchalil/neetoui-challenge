@@ -1,4 +1,6 @@
-export const FEATURE_LIST = [
+import { toast, Slide } from "react-toastify";
+
+const FEATURE_LIST = [
   "Uses Rails, React, Tailwind CSS and Webpacker.",
   "Uses Devise, Honeybadger, Sidekiq, PostgreSQL, ActiveAdmin.",
   "Heroku ready. Push to Heroku and it will work.",
@@ -11,3 +13,11 @@ export const FEATURE_LIST = [
   "Performs background job processing 'inline' for heroku env. It means heroku can deliver emails.",
   "Letter opener gem for development.",
 ];
+
+const TOASTR_OPTIONS = {
+  position: toast.POSITION.BOTTOM_CENTER,
+  transition: Slide,
+  theme: "colored",
+};
+
+export { TOASTR_OPTIONS, FEATURE_LIST };
