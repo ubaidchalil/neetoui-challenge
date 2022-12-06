@@ -1020,9 +1020,9 @@
     react-dom "^17.0.2"
 
 "@bigbinary/neetoui@^4.0.3":
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/@bigbinary/neetoui/-/neetoui-4.0.4.tgz#feca3fb6dd0d333085e41983a78003f505baeaf4"
-  integrity sha512-R88cdtyIe7ccvE0YTPbk3/Lqzxv3eqK+5YCsk+C7XgGvckUv1ex9a1jk5n1+dprupaxBH6c/TIEHp6D/9oY+SA==
+  version "4.1.19"
+  resolved "https://registry.yarnpkg.com/@bigbinary/neetoui/-/neetoui-4.1.19.tgz#e38d6b5e137fa4aef89143f7b9bf6b7be0134de7"
+  integrity sha512-WSR+7klrJQUM/3DBP1PyDqg3/qUXGHIjMsEvxughs3C9OxfAqs4NyICL+KO5TU7hJuDwwcmuz0EY/muFH05lKw==
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
