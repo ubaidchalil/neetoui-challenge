@@ -4,6 +4,7 @@ import Main from "components/Main";
 import ThemeWrapper from "components/ThemeWrapper";
 import { AuthProvider } from "contexts/auth";
 import { UserProvider } from "contexts/user";
+import "lib/dayjs";
 
 const App = props => (
   <AuthProvider>
