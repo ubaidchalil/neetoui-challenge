@@ -34,7 +34,7 @@ const Notes = () => {
             <Button icon="ri-add-line" label="Add note" size="small" />
           }
           menuBarToggle={() =>
-            setShowSideMenuBar(_showSideMenuBar => !_showSideMenuBar)
+            setShowSideMenuBar(showSideMenuBar => !showSideMenuBar)
           }
           searchProps={{
             value: searchTerm,
