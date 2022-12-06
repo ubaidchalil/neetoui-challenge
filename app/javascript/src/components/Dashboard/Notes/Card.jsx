@@ -57,8 +57,8 @@ const Card = ({
         </Tooltip>
         <Avatar
           user={{
-            imageUrl: assignedContact?.profile_image_url,
-            name: assignedContact?.name,
+            imageUrl: assignedContact.profile_image_url,
+            name: assignedContact.name,
           }}
         />
       </div>
