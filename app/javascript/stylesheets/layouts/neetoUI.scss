@@ -1,4 +1,9 @@
 .app--theme {
   --neeto-ui-primary-500: 47, 57, 65;
   --neeto-ui-primary-600: 47, 57, 65;
+  --neeto-ui-gray-800: 104, 115, 125
+}
+
+p {
+  color: rgb(var(--neeto-ui-gray-800));
 }

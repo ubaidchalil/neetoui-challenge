@@ -10,6 +10,8 @@ module.exports = {
       neetoui: "@bigbinary/neetoui",
       neetoicons: "@bigbinary/neeto-icons",
       utils: "src/utils",
+      data: "src/data",
+      lib: "src/lib",
     },
   },
 };

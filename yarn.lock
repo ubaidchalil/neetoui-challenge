@@ -1020,9 +1020,9 @@
     react-dom "^17.0.2"
 
 "@bigbinary/neetoui@^4.0.3":
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/@bigbinary/neetoui/-/neetoui-4.0.4.tgz#feca3fb6dd0d333085e41983a78003f505baeaf4"
-  integrity sha512-R88cdtyIe7ccvE0YTPbk3/Lqzxv3eqK+5YCsk+C7XgGvckUv1ex9a1jk5n1+dprupaxBH6c/TIEHp6D/9oY+SA==
+  version "4.1.19"
+  resolved "https://registry.yarnpkg.com/@bigbinary/neetoui/-/neetoui-4.1.19.tgz#e38d6b5e137fa4aef89143f7b9bf6b7be0134de7"
+  integrity sha512-WSR+7klrJQUM/3DBP1PyDqg3/qUXGHIjMsEvxughs3C9OxfAqs4NyICL+KO5TU7hJuDwwcmuz0EY/muFH05lKw==
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
@@ -3019,6 +3019,11 @@ dayjs@1.x:
   version "1.11.5"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.5.tgz#00e8cc627f231f9499c19b38af49f56dc0ac5e93"
   integrity sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==
+
+dayjs@^1.11.6:
+  version "1.11.6"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.6.tgz#2e79a226314ec3ec904e3ee1dd5a4f5e5b1c7afb"
+  integrity sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.9:
   version "2.6.9"
