@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import EmptyNotesListImage from "images/EmptyNotesList";
+import { Button } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
 
 import EmptyState from "components/Common/EmptyState";
@@ -19,9 +20,13 @@ const Notes = () => {
   return (
     <Container>
       <Header
-        title="Notes"
+        title="All Notes"
+        actionBlock={
+          <Button icon="ri-add-line" label="Add note" size="small" />
+        }
         searchProps={{
           value: searchTerm,
+          placeholder: "Search Name, Email and Phone Number",
           onChange: e => setSearchTerm(e.target.value),
         }}
       />
