@@ -3,11 +3,7 @@ import React from "react";
 import { MenuVertical, Clock } from "neetoicons";
 import { Typography, Dropdown, Tag, Tooltip, Avatar } from "neetoui";
 import PropTypes from "prop-types";
-
-import {
-  formatDateToDayAndTime,
-  formatDateToTimeSinceFromNow,
-} from "utils/index";
+import { formatDateToDayAndTime, formatDateToTimeSinceFromNow } from "utils";
 
 import { NOTES_STATUS_TITLE } from "./constants";
 
