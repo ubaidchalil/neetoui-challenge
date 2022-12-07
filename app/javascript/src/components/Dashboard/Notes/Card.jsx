@@ -38,14 +38,16 @@ const Card = ({ handleDelete, handleEdit, note }) => {
       <Typography style="body2">{description}</Typography>
       <hr className="my-4" />
       <div className="flex items-center justify-between">
-        {tags.map(tag => (
-          <Tag
-            className="mr-2 "
-            key={tag.id}
-            label={tag.name}
-            style="secondary"
-          />
-        ))}
+        <div className="flex">
+          {tags.map(tag => (
+            <Tag
+              className="mr-2 "
+              key={tag.id}
+              label={tag.name}
+              style="secondary"
+            />
+          ))}
+        </div>
         <div className="flex items-center">
           <Clock size={16} />
           <Tooltip
