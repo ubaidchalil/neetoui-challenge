@@ -1,4 +1,4 @@
-import { Notes, Settings, User } from "neetoicons";
+import { Notes, Settings, UserCircle } from "neetoicons";
 
 export const APP_NAME = "NeetoUI";
 
@@ -15,7 +15,7 @@ export const SIDENAV_LINKS = [
   {
     label: "Contacts",
     to: "/contacts",
-    icon: User,
+    icon: UserCircle,
   },
   {
     label: "Settings",
