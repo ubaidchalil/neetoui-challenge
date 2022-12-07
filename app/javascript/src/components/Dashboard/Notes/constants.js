@@ -67,7 +67,10 @@ export const NOTES = [
       name: "Jimmy Hern",
       profile_image_url: "https://i.pravatar.cc/300",
     },
-    tags: [{ id: 1, name: "Getting Started" }],
+    tags: [
+      { id: 1, name: "Getting Started" },
+      { id: 2, name: "Onboarding" },
+    ],
     status: "created",
     updated_at: "2022-12-05 17:24:43",
   },
