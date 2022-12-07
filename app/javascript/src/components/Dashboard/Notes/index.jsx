@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 
 import dayjs from "dayjs";
 import EmptyNotesListImage from "images/EmptyNotesList";
-import { Alert, Button } from "neetoui";
+import { Alert, Button, Toastr } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
 
 import EmptyState from "components/Common/EmptyState";
 import SideMenuBar from "components/Common/SideMenuBar";
-import Toastr from "components/Common/Toastr";
 
 import Card from "./Card";
 import {
