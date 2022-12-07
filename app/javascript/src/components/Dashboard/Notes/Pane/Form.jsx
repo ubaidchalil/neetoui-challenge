@@ -46,7 +46,7 @@ const NoteForm = ({ onClose, handleSubmit, note, isEdit }) => {
               placeholder="Select Contact"
               options={buildSelectOptions({
                 data: CONTACTS,
-                labelKey: "full_name",
+                labelKey: "fullName",
               })}
             />
             <Select
