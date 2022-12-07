@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import EmptyListImage from "images/EmptyList";
-import { Button, Toastr } from "neetoui";
+import { Alert, Button, Toastr } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
 
 import EmptyState from "components/Common/EmptyState";
@@ -24,12 +24,14 @@ const Contacts = () => {
   const [showSideMenuBar, setShowSideMenuBar] = useState(true);
   const [showCreateOrEditPane, setShowCreateOrEditPane] = useState(false);
   const [isEditContact, setIsEditContact] = useState(false);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
 
   useEffect(() => {
     setContacts(CONTACTS);
   }, []);
 
   const resetStates = () => {
+    setShowDeleteAlert(false);
     setShowCreateOrEditPane(false);
     setSelectedContactForEditOrDelete({});
     setIsEditContact(false);
@@ -46,6 +48,11 @@ const Contacts = () => {
     setIsEditContact(true);
     setSelectedContactForEditOrDelete(formatContactDataForEdit(contact));
     setShowCreateOrEditPane(true);
+  };
+
+  const handleDelete = contact => {
+    setSelectedContactForEditOrDelete(contact);
+    setShowDeleteAlert(true);
   };
 
   const handleSubmit = ({ contact, isEdit }) => {
@@ -73,6 +80,19 @@ const Contacts = () => {
       } successfully.`
     );
 
+    resetStates();
+  };
+
+  const handleConfirmDelete = () => {
+    const { id, fullName } = selectedContactForEditOrDelete;
+    const indexOfSelectedContact = contacts.findIndex(
+      contact => contact.id === id
+    );
+    if (indexOfSelectedContact === -1) return;
+
+    contacts.splice(indexOfSelectedContact, 1);
+    setContacts([...contacts]);
+    Toastr.success(`The contact '${fullName}' was deleted successfully.`);
     resetStates();
   };
 
@@ -104,7 +124,11 @@ const Contacts = () => {
           }}
         />
         {contacts.length > 0 ? (
-          <Table contacts={contacts} handleEdit={handleEdit} />
+          <Table
+            contacts={contacts}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+          />
         ) : (
           <EmptyState
             image={EmptyListImage}
@@ -124,6 +148,15 @@ const Contacts = () => {
               : CONTACTS_FORM_INITIAL_FORM_VALUES
           }
         />
+        {showDeleteAlert && (
+          <Alert
+            isOpen
+            message="Are you sure you want to delete this contact?"
+            title="Delete Contact"
+            onClose={() => setShowDeleteAlert(false)}
+            onSubmit={handleConfirmDelete}
+          />
+        )}
       </Container>
     </>
   );
