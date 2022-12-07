@@ -10,12 +10,14 @@ import { NOTES_STATUS_TITLE } from "./constants";
 const { Menu, MenuItem } = Dropdown;
 
 const Card = ({
+  id,
   title,
   description,
   tags = [],
   assignedContact,
   updatedAt,
   status,
+  handleDelete,
 }) => (
   <div className="my-2 w-full rounded-sm border border-solid p-4 shadow">
     <div className="flex items-center justify-between">
@@ -27,7 +29,7 @@ const Card = ({
           <MenuItem.Button>Edit</MenuItem.Button>
           <MenuItem.Button
             style="danger"
-            onClick={() => alert("Delete functionality is in progress")}
+            onClick={() => handleDelete({ id, title })}
           >
             Delete
           </MenuItem.Button>
@@ -72,6 +74,7 @@ Card.propTypes = {
   assignedContact: PropTypes.object,
   updatedAt: PropTypes.string,
   status: PropTypes.string,
+  handleDelete: PropTypes.func,
 };
 
 export default Card;
