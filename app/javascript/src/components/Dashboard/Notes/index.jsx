@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import dayjs from "dayjs";
 import EmptyListImage from "images/EmptyList";
 import { Alert, Button, Toastr } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
@@ -15,7 +14,7 @@ import {
   NOTES_MENU_ITEMS,
 } from "./constants";
 import CreateOrEditPane from "./Pane/CreateOrEdit";
-import { formatNoteDataForApi, formatNoteDataForForm } from "./utils";
+import { formatNoteDataForSave, formatNoteDataForEdit } from "./utils";
 
 const Notes = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -46,7 +45,7 @@ const Notes = () => {
 
   const handleEdit = note => {
     setIsEditNote(true);
-    setSelectedNoteForEditOrDelete(formatNoteDataForForm(note));
+    setSelectedNoteForEditOrDelete(formatNoteDataForEdit(note));
     setShowCreateOrEditPane(true);
   };
 
@@ -57,12 +56,11 @@ const Notes = () => {
   };
 
   const handleSubmit = ({ note, isEdit }) => {
-    note.updatedAt = dayjs().format("YYYY-MM-DD HH:mm:ss");
     if (isEdit) {
       const indexOfSelectedNote = notes.findIndex(({ id }) => id === note.id);
       if (indexOfSelectedNote === -1) return;
 
-      notes[indexOfSelectedNote] = formatNoteDataForApi(note);
+      notes[indexOfSelectedNote] = formatNoteDataForSave(note);
     } else {
       const sortedNotesById = notes.sort((a, b) => a.id - b.id);
 
@@ -71,7 +69,7 @@ const Notes = () => {
           ? 1
           : sortedNotesById[sortedNotesById.length - 1].id + 1;
       note.id = nextId;
-      notes.push(formatNoteDataForApi(note));
+      notes.push(formatNoteDataForSave(note));
     }
     setNotes([...notes]);
     Toastr.success(

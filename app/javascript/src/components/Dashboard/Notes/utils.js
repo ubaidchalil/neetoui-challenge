@@ -1,11 +1,12 @@
+import dayjs from "dayjs";
 import { buildSelectOptions } from "utils";
 
-const formatNoteDataForApi = note => ({
+const formatNoteDataForSave = note => ({
   id: note.id,
   title: note.title,
   description: note.description,
   status: note.status || "created",
-  updated_at: note.updatedAt,
+  updated_at: dayjs().format("YYYY-MM-DD HH:mm:ss"),
   assigned_contact: {
     id: note.assignedContact.value,
     name: note.assignedContact.label,
@@ -14,7 +15,7 @@ const formatNoteDataForApi = note => ({
   tags: note.tags.map(tag => ({ id: tag.value, name: tag.label })),
 });
 
-const formatNoteDataForForm = note => ({
+const formatNoteDataForEdit = note => ({
   id: note.id,
   title: note.title,
   description: note.description,
@@ -27,4 +28,4 @@ const formatNoteDataForForm = note => ({
   tags: buildSelectOptions({ data: note.tags }),
 });
 
-export { formatNoteDataForApi, formatNoteDataForForm };
+export { formatNoteDataForSave, formatNoteDataForEdit };
