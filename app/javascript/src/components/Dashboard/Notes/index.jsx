@@ -6,6 +6,7 @@ import { Container, Header } from "neetoui/layouts";
 
 import EmptyState from "components/Common/EmptyState";
 import SideMenuBar from "components/Common/SideMenuBar";
+import Toastr from "components/Common/Toastr";
 import { notes as noteList } from "data";
 
 import Card from "./Card";
@@ -24,14 +25,15 @@ const Notes = () => {
   }, []);
 
   const confirmDelete = () => {
-    const { id: noteId } = selectedNoteForDelete;
-    const indexOfSelectedNote = notes.findIndex(note => note.id === noteId);
+    const { id, title } = selectedNoteForDelete;
+    const indexOfSelectedNote = notes.findIndex(note => note.id === id);
     if (indexOfSelectedNote === -1) {
       return;
     }
 
     notes.splice(indexOfSelectedNote, 1);
     setNotes([...notes]);
+    Toastr.success(`The note ${title} was deleted successfully.`);
     setShowDeleteAlert(false);
   };
 

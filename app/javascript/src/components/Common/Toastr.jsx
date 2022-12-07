@@ -1,8 +1,8 @@
-import { TOASTR_OPTIONS } from "constants";
-
 import React from "react";
 
 import { toast } from "react-toastify";
+
+import { TOASTR_OPTIONS } from "components/constants";
 
 const ToastrComponent = ({ message }) => (
   <div className="flex flex-row items-start justify-start">

@@ -29,7 +29,7 @@ const Card = ({
           <MenuItem.Button>Edit</MenuItem.Button>
           <MenuItem.Button
             style="danger"
-            onClick={() => alert("Delete functionality is in progress")}
+            onClick={() => handleDelete({ id, title })}
           >
             Delete
           </MenuItem.Button>
