@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import EmptyNotesListImage from "images/EmptyNotesList";
-import { Button } from "neetoui";
+import { Alert, Button } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
 
 import EmptyState from "components/Common/EmptyState";
@@ -11,7 +11,6 @@ import { notes as noteList } from "data";
 
 import Card from "./Card";
 import { NOTES_MENU_ITEMS } from "./constants";
-import DeleteAlert from "./DeleteAlert";
 
 const Notes = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -33,7 +32,7 @@ const Notes = () => {
 
     notes.splice(indexOfSelectedNote, 1);
     setNotes([...notes]);
-    Toastr.success(`The note ${title} was deleted successfully.`);
+    Toastr.success(`The note '${title}' was deleted successfully.`);
     setShowDeleteAlert(false);
   };
 
@@ -84,9 +83,12 @@ const Notes = () => {
           />
         )}
         {showDeleteAlert && (
-          <DeleteAlert
-            confirmDelete={confirmDelete}
+          <Alert
+            isOpen
+            message="Are you sure you want to delete this note?"
+            title="Delete Note"
             onClose={() => setShowDeleteAlert(false)}
+            onSubmit={confirmDelete}
           />
         )}
       </Container>
