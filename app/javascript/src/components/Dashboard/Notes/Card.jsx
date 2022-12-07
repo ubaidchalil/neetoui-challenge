@@ -3,11 +3,7 @@ import React from "react";
 import { MenuVertical, Clock } from "neetoicons";
 import { Typography, Dropdown, Tag, Tooltip, Avatar } from "neetoui";
 import PropTypes from "prop-types";
-
-import {
-  formatDateToDayAndTime,
-  formatDateToTimeSinceFromNow,
-} from "utils/index";
+import { formatDateToDayAndTime, formatDateToTimeSinceNow } from "utils";
 
 import { NOTES_STATUS_TITLE } from "./constants";
 
@@ -29,7 +25,10 @@ const Card = ({
       <Dropdown buttonStyle="text" icon={MenuVertical}>
         <Menu>
           <MenuItem.Button>Edit</MenuItem.Button>
-          <MenuItem.Button style="danger" onClick={() => alert("Hi")}>
+          <MenuItem.Button
+            style="danger"
+            onClick={() => alert("Delete functionality is in progress")}
+          >
             Delete
           </MenuItem.Button>
         </Menu>
@@ -50,15 +49,15 @@ const Card = ({
         <Clock size={16} />
         <Tooltip content={formatDateToDayAndTime(updatedAt)} position="bottom">
           <Typography className="mx-2" style="body2">
-            {`${NOTES_STATUS_TITLE[status]} ${formatDateToTimeSinceFromNow(
+            {`${NOTES_STATUS_TITLE[status]} ${formatDateToTimeSinceNow(
               updatedAt
             )}`}
           </Typography>
         </Tooltip>
         <Avatar
           user={{
-            imageUrl: assignedContact?.profile_image_url,
-            name: assignedContact?.name,
+            imageUrl: assignedContact.profile_image_url,
+            name: assignedContact.name,
           }}
         />
       </div>

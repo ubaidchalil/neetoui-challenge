@@ -10,7 +10,7 @@ const SideMenuBar = ({ showSideMenuBar, title, menuData }) => {
 
   return (
     <MenuBar showMenu={showSideMenuBar} title={title}>
-      {menuData.filterTypes?.map(({ label, dataCount, active }, idx) => (
+      {menuData.filterTypes.map(({ label, dataCount, active }, idx) => (
         <MenuBar.Block
           active={active}
           count={dataCount}
@@ -40,7 +40,7 @@ const SideMenuBar = ({ showSideMenuBar, title, menuData }) => {
         collapse={isSearchCollapsed}
         onCollapse={() => setIsSearchCollapsed(true)}
       />
-      {menuData.segments?.map(({ label, dataCount }, idx) => (
+      {menuData.segments.map(({ label, dataCount }, idx) => (
         <MenuBar.Block count={dataCount} key={`segment-${idx}`} label={label} />
       ))}
       <MenuBar.SubTitle
@@ -65,7 +65,7 @@ const SideMenuBar = ({ showSideMenuBar, title, menuData }) => {
           Tags
         </Typography>
       </MenuBar.SubTitle>
-      {menuData.tags?.map(({ label, dataCount }, idx) => (
+      {menuData.tags.map(({ label, dataCount }, idx) => (
         <MenuBar.Block count={dataCount} key={`tag-${idx}`} label={label} />
       ))}
     </MenuBar>
