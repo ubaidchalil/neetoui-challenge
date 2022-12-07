@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import dayjs from "dayjs";
-import EmptyNotesListImage from "images/EmptyNotesList";
+import EmptyListImage from "images/EmptyList";
 import { Alert, Button, Toastr } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
 
@@ -132,7 +132,7 @@ const Notes = () => {
           ))
         ) : (
           <EmptyState
-            image={EmptyNotesListImage}
+            image={EmptyListImage}
             primaryActionLabel="Add note"
             subtitle="Add your notes to send customized emails to them."
             title="Looks like you don't have any notes!"

@@ -6,7 +6,7 @@ import { MenuBar } from "neetoui/layouts";
 import PropTypes from "prop-types";
 
 const SideMenuBar = ({ showSideMenuBar, title, menuData }) => {
-  const [isSearchCollapsed, setIsSearchCollapsed] = useState(false);
+  const [isSearchCollapsed, setIsSearchCollapsed] = useState(true);
 
   return (
     <MenuBar showMenu={showSideMenuBar} title={title}>
