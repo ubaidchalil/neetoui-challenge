@@ -2,79 +2,72 @@ import React from "react";
 
 import { MenuVertical, Clock } from "neetoicons";
 import { Typography, Dropdown, Tag, Tooltip, Avatar } from "neetoui";
-import PropTypes from "prop-types";
 import { formatDateToDayAndTime, formatDateToTimeSinceNow } from "utils";
 
 import { NOTES_STATUS_TITLE } from "./constants";
 
 const { Menu, MenuItem } = Dropdown;
 
-const Card = ({
-  id,
-  title,
-  description,
-  tags = [],
-  assignedContact,
-  updatedAt,
-  status,
-  handleDelete,
-}) => (
-  <div className="my-2 w-full rounded-sm border border-solid p-4 shadow">
-    <div className="flex items-center justify-between">
-      <Typography style="h4" weight="semibold">
-        {title}
-      </Typography>
-      <Dropdown buttonStyle="text" icon={MenuVertical}>
-        <Menu>
-          <MenuItem.Button>Edit</MenuItem.Button>
-          <MenuItem.Button
-            style="danger"
-            onClick={() => handleDelete({ id, title })}
+const Card = ({ handleDelete, handleEdit, note }) => {
+  const {
+    title,
+    description,
+    tags = [],
+    assigned_contact: assignedContact,
+    updated_at: updatedAt,
+    status,
+  } = note;
+
+  return (
+    <div className="my-2 w-full rounded-sm border border-solid p-4 shadow">
+      <div className="flex items-center justify-between">
+        <Typography style="h4" weight="semibold">
+          {title}
+        </Typography>
+        <Dropdown buttonStyle="text" icon={MenuVertical}>
+          <Menu>
+            <MenuItem.Button onClick={() => handleEdit(note)}>
+              Edit
+            </MenuItem.Button>
+            <MenuItem.Button style="danger" onClick={() => handleDelete(note)}>
+              Delete
+            </MenuItem.Button>
+          </Menu>
+        </Dropdown>
+      </div>
+      <Typography style="body2">{description}</Typography>
+      <hr className="my-4" />
+      <div className="flex items-center justify-between">
+        {tags.map(tag => (
+          <Tag
+            className="mr-2 "
+            key={tag.id}
+            label={tag.name}
+            style="secondary"
+          />
+        ))}
+        <div className="flex items-center">
+          <Clock size={16} />
+          <Tooltip
+            content={formatDateToDayAndTime(updatedAt)}
+            position="bottom"
           >
-            Delete
-          </MenuItem.Button>
-        </Menu>
-      </Dropdown>
-    </div>
-    <Typography style="body2">{description}</Typography>
-    <hr className="my-4" />
-    <div className="flex items-center justify-between">
-      {tags.map((tag, idx) => (
-        <Tag
-          className="mr-2 "
-          key={`tag-${idx}`}
-          label={tag}
-          style="secondary"
-        />
-      ))}
-      <div className="flex items-center">
-        <Clock size={16} />
-        <Tooltip content={formatDateToDayAndTime(updatedAt)} position="bottom">
-          <Typography className="mx-2" style="body2">
-            {`${NOTES_STATUS_TITLE[status]} ${formatDateToTimeSinceNow(
-              updatedAt
-            )}`}
-          </Typography>
-        </Tooltip>
-        <Avatar
-          user={{
-            imageUrl: assignedContact.profile_image_url,
-            name: assignedContact.name,
-          }}
-        />
+            <Typography className="mx-2" style="body2">
+              {`${NOTES_STATUS_TITLE[status]} ${formatDateToTimeSinceNow(
+                updatedAt
+              )}`}
+            </Typography>
+          </Tooltip>
+          <Avatar
+            user={{
+              imageUrl: assignedContact.profile_image_url,
+              name: assignedContact.name,
+            }}
+          />
+        </div>
       </div>
     </div>
-  </div>
-);
-
-Card.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  tags: PropTypes.array,
-  assignedContact: PropTypes.object,
-  updatedAt: PropTypes.string,
-  status: PropTypes.string,
-  handleDelete: PropTypes.func,
+  );
 };
 
 export default Card;

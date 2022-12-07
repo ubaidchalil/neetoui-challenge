@@ -1,29 +1,17 @@
 import React, { useState } from "react";
 
 import { Formik, Form } from "formik";
+import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
-import { Input, Textarea } from "neetoui/formik";
+import { Input, Textarea, Select } from "neetoui/formik";
+import { buildSelectOptions } from "utils";
 
-import notesApi from "apis/notes";
+import { CONTACTS } from "components/constants";
 
-import { NOTES_FORM_VALIDATION_SCHEMA } from "../constants";
+import { NOTES_FORM_VALIDATION_SCHEMA, TAGS } from "../constants";
 
-const NoteForm = ({ onClose, refetch, note, isEdit }) => {
+const NoteForm = ({ onClose, handleSubmit, note, isEdit }) => {
   const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = async values => {
-    try {
-      if (isEdit) {
-        await notesApi.update(note.id, values);
-      } else {
-        await notesApi.create(values);
-      }
-      refetch();
-      onClose();
-    } catch (err) {
-      logger.error(err);
-    }
-  };
 
   return (
     <Formik
@@ -31,7 +19,7 @@ const NoteForm = ({ onClose, refetch, note, isEdit }) => {
       validateOnBlur={submitted}
       validateOnChange={submitted}
       validationSchema={NOTES_FORM_VALIDATION_SCHEMA}
-      onSubmit={handleSubmit}
+      onSubmit={values => handleSubmit({ note: values, isEdit })}
     >
       {({ isSubmitting }) => (
         <Form className="w-full">
@@ -49,18 +37,49 @@ const NoteForm = ({ onClose, refetch, note, isEdit }) => {
               name="description"
               rows={8}
             />
+            <Select
+              isSearchable
+              required
+              className="w-full flex-grow-0"
+              label="Assigned Contact"
+              name="assignedContact"
+              placeholder="Select Contact"
+              options={buildSelectOptions({
+                data: CONTACTS,
+                labelKey: "full_name",
+              })}
+            />
+            <Select
+              isMulti
+              isSearchable
+              required
+              className="w-full flex-grow-0"
+              label="Tags"
+              name="tags"
+              placeholder="Select Tags"
+              options={buildSelectOptions({
+                data: TAGS,
+              })}
+            />
           </Pane.Body>
           <Pane.Footer>
             <Button
               className="mr-3"
               disabled={isSubmitting}
-              label={isEdit ? "Update" : "Save changes"}
+              icon={Check}
+              label={isEdit ? "Update" : "Save Changes"}
               loading={isSubmitting}
-              style="primary"
+              size="large"
               type="submit"
               onClick={() => setSubmitted(true)}
             />
-            <Button label="Cancel" style="text" onClick={onClose} />
+            <Button
+              label="Cancel"
+              size="large"
+              style="text"
+              type="reset"
+              onClick={onClose}
+            />
           </Pane.Footer>
         </Form>
       )}
