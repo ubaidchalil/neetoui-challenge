@@ -32,6 +32,7 @@ const renderDropdownMenu = ({ handleDelete, handleEdit, contact }) => (
 const Table = ({ contacts, handleDelete, handleEdit }) => (
   <div className="contacts-table-height w-full">
     <NeetoUITable
+      rowSelection
       defaultPageSize={10}
       rowData={contacts}
       columnData={[
