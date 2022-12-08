@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import EmptyListImage from "images/EmptyList";
 import { Alert, Button, Toastr } from "neetoui";
@@ -17,17 +17,13 @@ import { formatNoteDataForSave, formatNoteDataForEdit } from "./utils";
 
 const Notes = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(NOTES);
   const [selectedNoteForEditOrDelete, setSelectedNoteForEditOrDelete] =
     useState({});
   const [showSideMenuBar, setShowSideMenuBar] = useState(true);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [showCreateOrEditPane, setShowCreateOrEditPane] = useState(false);
   const [isEditNote, setIsEditNote] = useState(false);
-
-  useEffect(() => {
-    setNotes(NOTES);
-  }, []);
 
   const resetStates = () => {
     setShowCreateOrEditPane(false);
