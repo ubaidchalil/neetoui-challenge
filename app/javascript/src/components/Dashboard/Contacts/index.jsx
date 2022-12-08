@@ -4,8 +4,7 @@ import EmptyListImage from "images/EmptyList";
 import { Alert, Button, Toastr } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
 
-import EmptyState from "components/Common/EmptyState";
-import SideMenuBar from "components/Common/SideMenuBar";
+import { EmptyState, SideMenuBar } from "components/Common";
 import { CONTACTS } from "components/constants";
 
 import {
@@ -38,7 +37,6 @@ const Contacts = () => {
     setShowCreateOrEditPane(false);
     setSelectedContactForEditOrDelete({});
     setIsEditContact(false);
-    setShowSideMenuBar(false);
   };
 
   const handleCreate = () => {
