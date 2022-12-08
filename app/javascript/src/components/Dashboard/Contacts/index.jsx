@@ -37,6 +37,7 @@ const Contacts = () => {
     setShowCreateOrEditPane(false);
     setSelectedContactForEditOrDelete({});
     setIsEditContact(false);
+    setShowSideMenuBar(false);
   };
 
   const handleCreate = () => {
