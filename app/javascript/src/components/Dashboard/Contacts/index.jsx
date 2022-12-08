@@ -56,24 +56,27 @@ const Contacts = () => {
   };
 
   const handleSubmit = ({ contact, isEdit }) => {
+    const copiedContacts = [...contacts];
+
     if (isEdit) {
       const indexOfSelectedContact = contacts.findIndex(
         ({ id }) => id === contact.id
       );
       if (indexOfSelectedContact === -1) return;
 
-      contacts[indexOfSelectedContact] = formatContactDataForSave(contact);
+      copiedContacts[indexOfSelectedContact] =
+        formatContactDataForSave(contact);
     } else {
-      const sortedContactsById = contacts.sort((a, b) => a.id - b.id);
+      const sortedContactsById = [...contacts].sort((a, b) => a.id - b.id);
 
       const nextId =
         sortedContactsById.length === 0
           ? 1
           : sortedContactsById[sortedContactsById.length - 1].id + 1;
       contact.id = nextId;
-      contacts.push(formatContactDataForSave(contact));
+      copiedContacts.push(formatContactDataForSave(contact));
     }
-    setContacts([...contacts]);
+    setContacts(copiedContacts);
     Toastr.success(
       `The contact '${contact.fullName}' was ${
         isEdit ? "updated" : "created"
@@ -89,9 +92,9 @@ const Contacts = () => {
       contact => contact.id === id
     );
     if (indexOfSelectedContact === -1) return;
-
-    contacts.splice(indexOfSelectedContact, 1);
-    setContacts([...contacts]);
+    const copiedContacts = [...contacts];
+    copiedContacts.splice(indexOfSelectedContact, 1);
+    setContacts(copiedContacts);
     Toastr.success(`The contact '${fullName}' was deleted successfully.`);
     resetStates();
   };
