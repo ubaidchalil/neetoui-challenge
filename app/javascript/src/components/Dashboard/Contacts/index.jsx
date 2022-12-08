@@ -4,8 +4,7 @@ import EmptyListImage from "images/EmptyList";
 import { Alert, Button, Toastr } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
 
-import EmptyState from "components/Common/EmptyState";
-import SideMenuBar from "components/Common/SideMenuBar";
+import { EmptyState, SideMenuBar } from "components/Common";
 import { CONTACTS } from "components/constants";
 
 import {
@@ -13,8 +12,11 @@ import {
   CONTACTS_MENU_ITEMS,
 } from "./constants";
 import CreateOrEditPane from "./Pane/CreateOrEdit";
-import Table from "./Table";
-import { formatContactDataForEdit, formatContactDataForSave } from "./utils";
+import {
+  formatContactDataForEdit,
+  formatContactDataForSave,
+  renderTableWithContacts,
+} from "./utils";
 
 const Contacts = () => {
   const [contacts, setContacts] = useState([]);
@@ -35,7 +37,6 @@ const Contacts = () => {
     setShowCreateOrEditPane(false);
     setSelectedContactForEditOrDelete({});
     setIsEditContact(false);
-    setShowSideMenuBar(false);
   };
 
   const handleCreate = () => {
@@ -56,24 +57,27 @@ const Contacts = () => {
   };
 
   const handleSubmit = ({ contact, isEdit }) => {
+    const copiedContacts = [...contacts];
+
     if (isEdit) {
       const indexOfSelectedContact = contacts.findIndex(
         ({ id }) => id === contact.id
       );
       if (indexOfSelectedContact === -1) return;
 
-      contacts[indexOfSelectedContact] = formatContactDataForSave(contact);
+      copiedContacts[indexOfSelectedContact] =
+        formatContactDataForSave(contact);
     } else {
-      const sortedContactsById = contacts.sort((a, b) => a.id - b.id);
+      const sortedContactsById = [...contacts].sort((a, b) => a.id - b.id);
 
       const nextId =
         sortedContactsById.length === 0
           ? 1
           : sortedContactsById[sortedContactsById.length - 1].id + 1;
       contact.id = nextId;
-      contacts.push(formatContactDataForSave(contact));
+      copiedContacts.push(formatContactDataForSave(contact));
     }
-    setContacts([...contacts]);
+    setContacts(copiedContacts);
     Toastr.success(
       `The contact '${contact.fullName}' was ${
         isEdit ? "updated" : "created"
@@ -90,8 +94,9 @@ const Contacts = () => {
     );
     if (indexOfSelectedContact === -1) return;
 
-    contacts.splice(indexOfSelectedContact, 1);
-    setContacts([...contacts]);
+    const copiedContacts = [...contacts];
+    copiedContacts.splice(indexOfSelectedContact, 1);
+    setContacts(copiedContacts);
     Toastr.success(`The contact '${fullName}' was deleted successfully.`);
     resetStates();
   };
@@ -124,11 +129,7 @@ const Contacts = () => {
           }}
         />
         {contacts.length > 0 ? (
-          <Table
-            contacts={contacts}
-            handleDelete={handleDelete}
-            handleEdit={handleEdit}
-          />
+          renderTableWithContacts({ contacts, handleDelete, handleEdit })
         ) : (
           <EmptyState
             image={EmptyListImage}
