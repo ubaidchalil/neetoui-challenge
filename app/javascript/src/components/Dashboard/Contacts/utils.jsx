@@ -1,5 +1,6 @@
 import React from "react";
 
+import dayjs from "dayjs";
 import { MenuHorizontal } from "neetoicons";
 import { Table as NeetoUITable, Avatar, Typography, Dropdown } from "neetoui";
 import { formatDateToDayAndTime } from "utils";
@@ -29,7 +30,7 @@ const renderDropdownMenu = ({ handleDelete, handleEdit, contact }) => (
   </Dropdown>
 );
 
-const Table = ({ contacts, handleDelete, handleEdit }) => (
+const renderTableWithContacts = ({ contacts, handleDelete, handleEdit }) => (
   <div className="contacts-table-height w-full">
     <NeetoUITable
       rowSelection
@@ -68,4 +69,20 @@ const Table = ({ contacts, handleDelete, handleEdit }) => (
   </div>
 );
 
-export default Table;
+const formatContactDataForSave = contact => ({
+  ...contact,
+  createdAt: dayjs().format("YYYY-MM-DD HH:mm:ss"),
+  fullName: `${contact.firstName} ${contact.lastName}`,
+  role: { id: contact.role.value, name: contact.role.label },
+});
+
+const formatContactDataForEdit = contact => ({
+  ...contact,
+  role: { value: contact.role.id, label: contact.role.name },
+});
+
+export {
+  formatContactDataForSave,
+  formatContactDataForEdit,
+  renderTableWithContacts,
+};

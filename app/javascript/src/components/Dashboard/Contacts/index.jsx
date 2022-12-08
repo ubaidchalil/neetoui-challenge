@@ -13,8 +13,11 @@ import {
   CONTACTS_MENU_ITEMS,
 } from "./constants";
 import CreateOrEditPane from "./Pane/CreateOrEdit";
-import Table from "./Table";
-import { formatContactDataForEdit, formatContactDataForSave } from "./utils";
+import {
+  formatContactDataForEdit,
+  formatContactDataForSave,
+  renderTableWithContacts,
+} from "./utils";
 
 const Contacts = () => {
   const [contacts, setContacts] = useState([]);
@@ -92,6 +95,7 @@ const Contacts = () => {
       contact => contact.id === id
     );
     if (indexOfSelectedContact === -1) return;
+
     const copiedContacts = [...contacts];
     copiedContacts.splice(indexOfSelectedContact, 1);
     setContacts(copiedContacts);
@@ -127,11 +131,7 @@ const Contacts = () => {
           }}
         />
         {contacts.length > 0 ? (
-          <Table
-            contacts={contacts}
-            handleDelete={handleDelete}
-            handleEdit={handleEdit}
-          />
+          renderTableWithContacts({ contacts, handleDelete, handleEdit })
         ) : (
           <EmptyState
             image={EmptyListImage}
