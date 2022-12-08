@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import EmptyListImage from "images/EmptyList";
 import { Alert, Button, Toastr } from "neetoui";
@@ -19,7 +19,7 @@ import {
 } from "./utils";
 
 const Contacts = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(CONTACTS);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedContactForEditOrDelete, setSelectedContactForEditOrDelete] =
     useState({});
@@ -28,15 +28,12 @@ const Contacts = () => {
   const [isEditContact, setIsEditContact] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
 
-  useEffect(() => {
-    setContacts(CONTACTS);
-  }, []);
-
   const resetStates = () => {
     setShowDeleteAlert(false);
     setShowCreateOrEditPane(false);
     setSelectedContactForEditOrDelete({});
     setIsEditContact(false);
+    setShowSideMenuBar(false);
   };
 
   const handleCreate = () => {

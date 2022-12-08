@@ -4,7 +4,7 @@ import { Pane, Typography } from "neetoui";
 
 import Form from "./Form";
 
-const CreateOrEditPane = ({
+const CreateOrEdit = ({
   isEdit = false,
   contact,
   showPane,
@@ -30,4 +30,4 @@ const CreateOrEditPane = ({
   );
 };
 
-export default CreateOrEditPane;
+export default CreateOrEdit;

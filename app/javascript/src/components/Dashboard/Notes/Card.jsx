@@ -61,6 +61,7 @@ const Card = ({ handleDelete, handleEdit, note }) => {
             </Typography>
           </Tooltip>
           <Avatar
+            showTooltip
             user={{
               imageUrl: assignedContact.profile_image_url,
               name: assignedContact.name,

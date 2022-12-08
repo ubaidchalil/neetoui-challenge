@@ -1,5 +1,6 @@
 import React from "react";
 
+import Logo from "images/Logo";
 import { Sidebar as NeetoUISidebar } from "neetoui/layouts";
 import { useHistory } from "react-router-dom";
 
@@ -12,7 +13,6 @@ import {
 import { useAuthDispatch } from "contexts/auth";
 import { useUserState } from "contexts/user";
 
-import AppLogo from "./AppLogo";
 import { APP_NAME, SIDENAV_LINKS } from "./constants";
 
 const Sidebar = () => {
@@ -53,7 +53,7 @@ const Sidebar = () => {
       organizationInfo={{
         name: "NeetoUI",
         subdomain: "bigbinary.com",
-        logo: <AppLogo />,
+        logo: <img src={Logo} />,
       }}
       profileInfo={{
         name: `${user.first_name} ${user.last_name}`,
