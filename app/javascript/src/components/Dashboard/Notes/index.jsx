@@ -35,7 +35,6 @@ const Notes = () => {
     setSelectedNoteForEditOrDelete({});
     setIsEditNote(false);
     setShowDeleteAlert(false);
-    setShowSideMenuBar(false);
   };
 
   const handleDelete = note => {
@@ -56,22 +55,24 @@ const Notes = () => {
   };
 
   const handleSubmit = ({ note, isEdit }) => {
+    const copiedNotes = [...notes];
     if (isEdit) {
       const indexOfSelectedNote = notes.findIndex(({ id }) => id === note.id);
       if (indexOfSelectedNote === -1) return;
 
-      notes[indexOfSelectedNote] = formatNoteDataForSave(note);
+      copiedNotes[indexOfSelectedNote] = formatNoteDataForSave(note);
     } else {
-      const sortedNotesById = notes.sort((a, b) => a.id - b.id);
+      const sortedNotesById = [...notes].sort((a, b) => a.id - b.id);
 
       const nextId =
         sortedNotesById.length === 0
           ? 1
           : sortedNotesById[sortedNotesById.length - 1].id + 1;
       note.id = nextId;
-      notes.push(formatNoteDataForSave(note));
+      copiedNotes.push(formatNoteDataForSave(note));
     }
-    setNotes([...notes]);
+    setNotes(copiedNotes);
+
     Toastr.success(
       `The note '${note.title}' was ${
         isEdit ? "updated" : "created"
@@ -86,8 +87,9 @@ const Notes = () => {
     const indexOfSelectedNote = notes.findIndex(note => note.id === id);
     if (indexOfSelectedNote === -1) return;
 
-    notes.splice(indexOfSelectedNote, 1);
-    setNotes([...notes]);
+    const copiedContacts = [...notes];
+    copiedContacts.splice(indexOfSelectedNote, 1);
+    setNotes(copiedContacts);
     Toastr.success(`The note '${title}' was deleted successfully.`);
     resetStates();
   };
